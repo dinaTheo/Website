@@ -1,7 +1,5 @@
 # React JS Resume Website Template
 
-![ReactJS Resume Website Template](resume-screenshot.jpg?raw=true 'ReactJS Resume Website Template')
-
 <div align="center">
 
 ## React based template for software developer-focused resume websites
@@ -51,7 +49,5 @@ Of course, all of the code is there and nothing is hidden from you so if you wou
 
 Deploying your new site to Vercel is simple, and can be done by following their guide [here.](https://vercel.com/guides/deploying-nextjs-with-vercel) When you're all done and the build succeeds, you should be given a url for your live site, go there and you'll see your new personal resume website! Congratulations!
 
-## Project Created & Maintained By
-
-### Tim Baker
+Project Created & Maintained By https://github.com/tbakerx/react-resume-template
 
