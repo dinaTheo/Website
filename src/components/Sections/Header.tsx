@@ -5,95 +5,74 @@ import Link from 'next/link';
 import { FC, Fragment, memo, useCallback, useMemo, useState } from 'react';
 
 import { SectionId } from '../../data/data';
-import { useNavObserver } from '../../hooks/useNavObserver';
-import { handleNavClick } from '../../hooks/useNavObserver'; // Assuming handleNavClick is exported here
+import { useNavObserver, handleNavClick } from '../../hooks/useNavObserver';
 
 export const headerID = 'headerNav';
 
 const Header: FC = memo(() => {
   const [currentSection, setCurrentSection] = useState<SectionId | null>(null);
-  const [manualOverride, setManualOverride] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false); // NEW
 
   const navSections = useMemo(() => [SectionId.Hero, SectionId.Resume], []);
+  const intersectionHandler = useCallback((section: SectionId | null) => {
+    section && setCurrentSection(section);
+  }, []);
 
-  // Intersection observer updates currentSection only if not manual override
-  const intersectionHandler = useCallback(
-    (section: SectionId | null) => {
-      if (!manualOverride && section) {
-        setCurrentSection(section);
-      }
-    },
-    [manualOverride],
-  );
-
+  // ⛔️ Disable observer when nav is open
   useNavObserver(
     navSections.map(section => `#${section}`).join(','),
-    intersectionHandler
+    intersectionHandler,
+    isMobileNavOpen
   );
-
-  // Called when user clicks nav item - triggers immediate highlight + scroll
-  const onNavClick = useCallback((section: SectionId) => {
-    setManualOverride(true);
-    setCurrentSection(section);
-    handleNavClick(section);
-
-    // After 1 second, re-enable observer for scroll-based updates
-    setTimeout(() => setManualOverride(false), 1000);
-  }, []);
 
   return (
     <>
       <MobileNav
+        isOpen={isMobileNavOpen}
+        setIsOpen={setIsMobileNavOpen}
         currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
         navSections={navSections}
-        onNavClick={onNavClick}
       />
-      <DesktopNav
-        currentSection={currentSection}
-        navSections={navSections}
-        onNavClick={onNavClick}
-      />
+      <DesktopNav currentSection={currentSection} navSections={navSections} />
     </>
   );
 });
 
-type NavProps = {
+
+const DesktopNav: FC<{ navSections: SectionId[]; currentSection: SectionId | null }> = memo(
+  ({ navSections, currentSection }) => {
+    const baseClass =
+      '-m-1.5 p-1.5 rounded-md font-bold first-letter:uppercase hover:transition-colors hover:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:hover:text-orange-500 text-neutral-100';
+    const activeClass = classNames(baseClass, 'text-orange-500');
+    const inactiveClass = classNames(baseClass, 'text-neutral-100');
+
+    return (
+      <header className="fixed top-0 z-50 hidden w-full bg-neutral-900/50 p-4 backdrop-blur sm:block" id={headerID}>
+        <nav className="flex justify-center gap-x-8">
+          {navSections.map(section => (
+            <NavItem
+              activeClass={activeClass}
+              current={section === currentSection}
+              inactiveClass={inactiveClass}
+              key={section}
+              section={section}
+            />
+          ))}
+        </nav>
+      </header>
+    );
+  },
+);
+
+const MobileNav: FC<{
   navSections: SectionId[];
   currentSection: SectionId | null;
-  onNavClick: (section: SectionId) => void;
-};
-
-const DesktopNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick }) => {
-  const baseClass =
-    '-m-1.5 p-1.5 rounded-md font-bold first-letter:uppercase hover:transition-colors hover:duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:hover:text-orange-500 text-neutral-100';
-  const activeClass = classNames(baseClass, 'text-orange-500');
-  const inactiveClass = classNames(baseClass, 'text-neutral-100');
-
-  return (
-    <header
-      className="fixed top-0 z-50 hidden w-full bg-neutral-900/50 p-4 backdrop-blur sm:block"
-      id={headerID}
-    >
-      <nav className="flex justify-center gap-x-8">
-        {navSections.map(section => (
-          <NavItem
-            key={section}
-            section={section}
-            current={section === currentSection}
-            activeClass={activeClass}
-            inactiveClass={inactiveClass}
-            onClick={() => onNavClick(section)}
-          />
-        ))}
-      </nav>
-    </header>
-  );
-});
-
-const MobileNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = useCallback(() => setIsOpen(open => !open), []);
+  setCurrentSection: (section: SectionId) => void;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}> = memo(({ navSections, currentSection, setCurrentSection, isOpen, setIsOpen }) => {
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   const baseClass =
     'p-2 rounded-md first-letter:uppercase transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500';
@@ -105,8 +84,7 @@ const MobileNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick 
       <button
         aria-label="Menu Button"
         className="fixed right-2 top-2 z-40 rounded-md bg-orange-500 p-2 ring-offset-gray-800/60 hover:bg-orange-400 focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 sm:hidden"
-        onClick={toggleOpen}
-      >
+        onClick={toggleOpen}>
         <Bars3BottomRightIcon className="h-8 w-8 text-white" />
         <span className="sr-only">Open sidebar</span>
       </button>
@@ -120,11 +98,9 @@ const MobileNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick 
             enterTo="opacity-100"
             leave="transition-opacity ease-linear duration-300"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+            leaveTo="opacity-0">
             <Dialog.Overlay className="fixed inset-0 bg-stone-900 bg-opacity-75" />
           </Transition.Child>
-
           <Transition.Child
             as={Fragment}
             enter="transition ease-in-out duration-300 transform"
@@ -132,21 +108,21 @@ const MobileNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick 
             enterTo="translate-x-0"
             leave="transition ease-in-out duration-300 transform"
             leaveFrom="translate-x-0"
-            leaveTo="-translate-x-full"
-          >
+            leaveTo="-translate-x-full">
             <div className="relative w-4/5 bg-stone-800">
               <nav className="mt-5 flex flex-col gap-y-2 px-2">
                 {navSections.map(section => (
                   <NavItem
-                    key={section}
-                    section={section}
-                    current={section === currentSection}
                     activeClass={activeClass}
+                    current={section === currentSection}
                     inactiveClass={inactiveClass}
+                    key={section}
                     onClick={() => {
-                      onNavClick(section);
-                      setIsOpen(false);
+                      setCurrentSection(section); // highlight immediately
+                      handleNavClick(section);
+                      setIsOpen(false); // close menu
                     }}
+                    section={section}
                   />
                 ))}
               </nav>
@@ -158,22 +134,18 @@ const MobileNav: FC<NavProps> = memo(({ navSections, currentSection, onNavClick 
   );
 });
 
-type NavItemProps = {
+const NavItem: FC<{
   section: SectionId;
   current: boolean;
   activeClass: string;
   inactiveClass: string;
   onClick?: () => void;
-};
-
-const NavItem: FC<NavItemProps> = memo(({ section, current, inactiveClass, activeClass, onClick }) => {
+}> = memo(({ section, current, activeClass, inactiveClass, onClick }) => {
   return (
     <Link
-      className={classNames(current ? activeClass : inactiveClass)}
       href={`/#${section}`}
-      onClick={onClick}
-      key={section}
-    >
+      className={classNames(current ? activeClass : inactiveClass)}
+      onClick={onClick}>
       {section}
     </Link>
   );

@@ -14,7 +14,7 @@ import Image from 'next/image';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
 // import StackOverflowIcon from '../components/Icon/StackOverflowIcon';
 // import TwitterIcon from '../components/Icon/TwitterIcon';
-import heroImage from '../images/header-background.webp';
+import heroImage from '../images/header-background.jpeg';
 // import profilePic from 'personal-website/src/images/profilepic.jpg';
 // import porfolioImage1 from '../images/portfolio/portfolio-1.jpg';
 // import porfolioImage2 from '../images/portfolio/portfolio-2.jpg';
@@ -81,7 +81,7 @@ export const heroData: Hero = {
             <Image alt="about-me-image" className="h-full w-full object-cover" src={profilepic} />
       </div>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in data science, software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking.
+        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in data science, software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me, my email is <strong>kt918@bath.ac.uk</strong>.
       </p>
       {/* <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
@@ -250,11 +250,18 @@ export const heroData: Hero = {
  */
 export const update: TimelineItem[] = [
   {
-    date: 'April 2025',
+    date: 'July 2025',
+    location: 'Manchester, UK',
+    title: 'RMetS (Royal Meteorological Society) Early Careers and Student Conference 2025',
+    content: <p>Presented in <strong>Machine Learning Applications in Meteorology</strong> poster session.</p>,
+  },
+  {
+    date: 'May 2025',
     location: 'Vienna, Austria',
     title: 'EGU25 (European Geosciences Union) Conference',
-    content: <p>Presented in Deep Learning in Hydrology poster session</p>,
+    content: <p>Presented in <strong>Deep Learning in Hydrology</strong> poster session.</p>,
   }
+
 ];
 
 // export const experience: TimelineItem[] = [

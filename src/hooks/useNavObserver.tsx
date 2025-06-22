@@ -3,8 +3,14 @@ import {useEffect} from 'react';
 // import {headerID} from '../components/Sections/Header';
 import {SectionId} from '../data/data';
 
-export const useNavObserver = (selectors: string, handler: (section: SectionId | null) => void) => {
+export const useNavObserver = (
+  selectors: string,
+  handler: (section: SectionId | null) => void,
+  disabled = false // new param
+) => {
   useEffect(() => {
+    if (disabled) return;
+
     const sections = document.querySelectorAll(selectors);
     if (!sections.length) return;
 
@@ -22,15 +28,15 @@ export const useNavObserver = (selectors: string, handler: (section: SectionId |
       {
         root: null,
         threshold: 0.1,
-        rootMargin: '0px 0px -70% 0px', // top 30% zone
+        rootMargin: '0px 0px -70% 0px',
       }
     );
 
     sections.forEach(section => observer.observe(section));
-
     return () => observer.disconnect();
-  }, [selectors, handler]);
+  }, [selectors, handler, disabled]);
 };
+
 
 export const handleNavClick = (sectionId: SectionId) => {
   const el = document.getElementById(sectionId);
