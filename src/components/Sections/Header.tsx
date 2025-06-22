@@ -28,8 +28,7 @@ const Header: FC = memo(() => {
 
   useNavObserver(
     navSections.map(section => `#${section}`).join(','),
-    intersectionHandler,
-    manualOverride,
+    intersectionHandler
   );
 
   // Called when user clicks nav item - triggers immediate highlight + scroll
