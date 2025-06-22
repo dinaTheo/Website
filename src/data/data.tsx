@@ -36,7 +36,7 @@ import {
   // ContactType,
   Hero,
   HomepageMeta,
-  // PortfolioItem,
+  //PortfolioItem,
   // SkillGroup,
   Social,
   // TestimonialSection,
@@ -56,12 +56,12 @@ export const homePageMeta: HomepageMeta = {
  */
 export const SectionId = {
   Hero: 'about',
-  About: 'about',
+  // About: 'about',
   // Contact: 'contact',
   // Portfolio: 'portfolio',
   Resume: 'updates',
   // Skills: 'skills',
-  Stats: 'stats',
+  // Stats: 'stats',
   // Testimonials: 'testimonials',
 } as const;
 
@@ -81,7 +81,7 @@ export const heroData: Hero = {
             <Image alt="about-me-image" className="h-full w-full object-cover" src={profilepic} />
       </div>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a PhD Researcher based at the University of Bath. I'm developing deep learning models for hydrologic predictions to better understand river flow in the face of floods. My background is in data science, software engineering and physics and I love to work on data-driven software systems with environmental impact and for the common good. At my free time, I enjoy reading novels, non-fiction, and walking.
+        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in data science, software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking.
       </p>
       {/* <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,

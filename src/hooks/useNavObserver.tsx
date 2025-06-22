@@ -1,60 +1,45 @@
 import {useEffect} from 'react';
 
-import {headerID} from '../components/Sections/Header';
+// import {headerID} from '../components/Sections/Header';
 import {SectionId} from '../data/data';
 
 export const useNavObserver = (selectors: string, handler: (section: SectionId | null) => void) => {
   useEffect(() => {
-    // Get all sections
-    const headings = document.querySelectorAll(selectors);
-    const headingsArray = Array.from(headings);
-    const headerWrapper = document.getElementById(headerID);
+    const sections = document.querySelectorAll(selectors);
+    if (!sections.length) return;
 
-    // Create the IntersectionObserver API
     const observer = new IntersectionObserver(
       entries => {
-        entries.forEach(entry => {
-          const currentY = entry.boundingClientRect.y;
-          const id = entry.target.getAttribute('id');
-          if (headerWrapper) {
-            // Create a decision object
-            const decision = {
-              id,
-              currentIndex: headingsArray.findIndex(heading => heading.getAttribute('id') === id),
-              isIntersecting: entry.isIntersecting,
-              currentRatio: entry.intersectionRatio,
-              aboveToc: currentY < headerWrapper.getBoundingClientRect().y,
-              belowToc: !(currentY < headerWrapper.getBoundingClientRect().y),
-            };
-            if (decision.isIntersecting) {
-              // Header at 30% from the top, update to current header
-              handler(decision.id as SectionId);
-            } else if (
-              !decision.isIntersecting &&
-              decision.currentRatio < 1 &&
-              decision.currentRatio > 0 &&
-              decision.belowToc
-            ) {
-              const currentVisible = headingsArray[decision.currentIndex - 1]?.getAttribute('id');
-              handler(currentVisible as SectionId);
-            }
-          }
-        });
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible.length > 0) {
+          const topId = visible[0].target.getAttribute('id');
+          handler(topId as SectionId);
+        }
       },
       {
         root: null,
         threshold: 0.1,
-        rootMargin: '0px 0px -70% 0px',
-      },
+        rootMargin: '0px 0px -70% 0px', // top 30% zone
+      }
     );
-    // Observe all the Sections
-    headings.forEach(section => {
-      observer.observe(section);
-    });
-    // Cleanup
-    return () => {
-      observer.disconnect();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Dependency here is the post content.
+
+    sections.forEach(section => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [selectors, handler]);
 };
+
+export const handleNavClick = (sectionId: SectionId) => {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+
+  el.scrollIntoView({ behavior: 'smooth' });
+
+  setTimeout(() => {
+    window.dispatchEvent(new Event('scroll'));
+  }, 100); // 100ms delay to allow scrolling to start
+};
+
