@@ -252,20 +252,20 @@ export const update: TimelineItem[] = [
   {
     date: 'July 2025',
     location: 'Bath, UK',
-    title: 'Turing GW4 - AI, Data Science, Climate, Adaptation and Net Zero',
-    content: <p>Gave a lightening talk</p>,
+    title: 'Turing GW4: AI, Data Science, Climate, Adaptation and Net Zero',
+    content: 'Gave a lightening talk',
   },
   {
     date: 'July 2025',
     location: 'Manchester, UK',
-    title: 'RMetS (Royal Meteorological Society) Early Careers and Student Conference 2025',
-    content: <p>Presented in <strong>Machine Learning Applications in Meteorology</strong> poster session.</p>,
+    title: 'RMetS Early Careers and Student Conference 2025',
+    content: 'Presented at Machine Learning Applications in Meteorology poster session',
   },
   {
     date: 'May 2025',
     location: 'Vienna, Austria',
-    title: 'EGU25 (European Geosciences Union) Conference',
-    content: <p>Presented in <strong>Deep Learning in Hydrology</strong> poster session.</p>,
+    title: 'EGU25 Conference',
+    content: 'Presented at Deep Learning in Hydrology poster session',
   }
 
 ];
