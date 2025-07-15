@@ -81,7 +81,7 @@ export const heroData: Hero = {
             <Image alt="about-me-image" className="h-full w-full object-cover" src={profilepic} />
       </div>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in data science, software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me, my email is <strong>kt918@bath.ac.uk</strong>.
+        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in analytics/software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me, my email is <strong>kt918@bath.ac.uk</strong>.
       </p>
       {/* <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
@@ -249,6 +249,12 @@ export const heroData: Hero = {
  * Resume section -- TODO: Standardize resume contact format or offer MDX
  */
 export const update: TimelineItem[] = [
+  {
+    date: 'July 2025',
+    location: 'Bath, UK',
+    title: 'Turing GW4 - AI, Data Science, Climate, Adaptation and Net Zero',
+    content: <p>Gave a lightening talk</p>,
+  },
   {
     date: 'July 2025',
     location: 'Manchester, UK',
