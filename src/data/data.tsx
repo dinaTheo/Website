@@ -81,7 +81,7 @@ export const heroData: Hero = {
             <Image alt="about-me-image" className="h-full w-full object-cover" src={profilepic} />
       </div>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a PhD Researcher based at the University of Bath, UK. I'm developing deep learning models for hydrologic predictions related to river flooding. My background is in analytics/software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me, my email is <strong>kt918@bath.ac.uk</strong>.
+        I'm a PhD Researcher based at the University of Bath, UK.  My background is in analytics/software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me for collaborations, my email is <strong>kt918@bath.ac.uk</strong>.
       </p>
       {/* <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
@@ -248,7 +248,30 @@ export const heroData: Hero = {
 /**
  * Resume section -- TODO: Standardize resume contact format or offer MDX
  */
+import styled from 'styled-components';
+
+const Link = styled.a`
+  color: blue;
+  text-decoration: none;
+
+  &:hover {
+    color: red;
+    text-decoration: underline;
+  }
+`;
+
 export const update: TimelineItem[] = [
+  {
+    date: 'August 2025',
+    location: 'UK',
+    title: 'Written a blog article on the spectrum of time-series forecasting models and differences',
+    content: (
+      <p>Read my article:&nbsp;
+        <Link href="https://medium.com/@dina.theodosiadou/time-series-modeling-from-state-space-to-deep-learning-5c75a2e8b775" 
+        >From statistical, to state-space (SSM) and deep learning models</Link>
+      </p>
+    )
+  },
   {
     date: 'July 2025',
     location: 'Bath, UK',
@@ -259,13 +282,23 @@ export const update: TimelineItem[] = [
     date: 'July 2025',
     location: 'Manchester, UK',
     title: 'RMetS Early Careers and Student Conference 2025',
-    content: 'Presented at Machine Learning Applications in Meteorology poster session',
+    content: (
+      <p>Check the poster&nbsp;
+        <Link href="https://www.rmets.org/conference/early-careers-and-student-conference-2025/poster-presentations/forecasting-high-flows"
+        >abstract</Link>
+      </p>
+    )
   },
   {
     date: 'May 2025',
     location: 'Vienna, Austria',
-    title: 'EGU25 Conference',
-    content: 'Presented at Deep Learning in Hydrology poster session',
+    title: 'EGU25 Conference, Deep Learning in Hydrology session',
+    content: (
+      <p>Check the poster&nbsp;
+        <Link href="https://doi.org/10.5194/egusphere-egu25-7020"
+        >abstract</Link>
+      </p>
+    )
   }
 
 ];
