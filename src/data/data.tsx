@@ -81,7 +81,7 @@ export const heroData: Hero = {
             <Image alt="about-me-image" className="h-full w-full object-cover" src={profilepic} />
       </div>
       <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
-        I'm a PhD Researcher based at the University of Bath, UK.  My background is in analytics/software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. To get in touch with me for collaborations, my email is <strong>kt918@bath.ac.uk</strong>.
+        I'm a PhD Researcher based at the University of Bath, UK.  My background is in analytics/software engineering and physics and I love to work on data-driven apps with environmental impact, contributing to the common good. At my free time, I enjoy reading novels, non-fiction, and walking. I'd be happy to be included in collaborations. To get in touch with me, my email is <strong>kt918@bath.ac.uk</strong> and free feel to connect with me on LinkedIn.
       </p>
       {/* <p className="prose-sm text-stone-200 sm:prose-base lg:prose-lg">
         In my free time time, you can catch me training in <strong className="text-stone-100">Muay Thai</strong>,
