@@ -262,13 +262,24 @@ const Link = styled.a`
 
 export const update: TimelineItem[] = [
   {
+    date: 'September 2025',
+    location: 'Ljubliana, Slovenia',
+    title: 'AI 4 Science summer school',
+    content: (
+      <p>
+        <Link href="https://ai4science.si/dafab-summer-school/" 
+        >Artificial Intelligence (AI) and Earth Observation (EO)</Link>
+      </p>
+    )
+  },
+  {
     date: 'August 2025',
     location: 'UK',
-    title: 'Written a blog article on the spectrum of time-series forecasting models and differences',
+    title: 'Blog article',
     content: (
       <p>Read my article:&nbsp;
         <Link href="https://medium.com/@dina.theodosiadou/time-series-modeling-from-state-space-to-deep-learning-5c75a2e8b775" 
-        >From statistical, to state-space (SSM) and deep learning models</Link>
+        >From statistical, to state-space (SSM) and deep learning forecasting models</Link>
       </p>
     )
   },
