@@ -287,31 +287,37 @@ export const update: TimelineItem[] = [
     date: 'July 2025',
     location: 'Bath, UK',
     title: 'Turing GW4: AI, Data Science, Climate, Adaptation and Net Zero',
-    content: 'Gave a lightening talk',
+    content:       
+    ( 
+    <p>Gave a lightening talk on &nbsp;
+    <Link href="../../docs/Multi-scale GNNs.pdf"
+    >Multi-scale GNNs for hydrologic predictions</Link>
+    </p> )
   },
   {
     date: 'July 2025',
     location: 'Manchester, UK',
     title: 'RMetS Early Careers and Student Conference 2025',
     content: (
-      <p>Check the poster&nbsp;
+      <p>Check the&nbsp;
+        <Link href="../../docs/PosterRMetS25.pdf"
+        >poster</Link>&nbsp;and the&nbsp;
         <Link href="https://www.rmets.org/conference/early-careers-and-student-conference-2025/poster-presentations/forecasting-high-flows"
         >abstract</Link>
       </p>
     )
   },
   {
-    date: 'May 2025',
+    date: 'May 2025', 
     location: 'Vienna, Austria',
     title: 'EGU25 Conference, Deep Learning in Hydrology session',
     content: (
-      <p>Check the poster&nbsp;
-        <Link href="https://doi.org/10.5194/egusphere-egu25-7020"
-        >abstract</Link>
+      <p>Check the&nbsp;
+        <Link href="../../docs/PosterEGU25.pdf"
+        >poster</Link>
       </p>
     )
   }
-
 ];
 
 // export const experience: TimelineItem[] = [
