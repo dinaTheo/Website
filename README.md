@@ -1,4 +1,4 @@
-# React JS Resume/Portfolio Website Template 
+# React JS Portfolio Website
 
-Project Created & Maintained By https://github.com/tbakerx/react-resume-template
+Project created using this template https://github.com/tbakerx/react-resume-template
 
