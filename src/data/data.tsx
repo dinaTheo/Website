@@ -299,7 +299,7 @@ export const update: TimelineItem[] = [
     location: 'Manchester, UK',
     title: 'RMetS Early Careers and Student Conference 2025',
     content: (
-      <p>Check the&nbsp;
+      <p>Check out the&nbsp;
         <Link href="../../docs/PosterRMetS25.pdf"
         >poster</Link>&nbsp;and the&nbsp;
         <Link href="https://www.rmets.org/conference/early-careers-and-student-conference-2025/poster-presentations/forecasting-high-flows"
@@ -312,9 +312,11 @@ export const update: TimelineItem[] = [
     location: 'Vienna, Austria',
     title: 'EGU25 Conference, Deep Learning in Hydrology session',
     content: (
-      <p>Check the&nbsp;
+      <p>Check out the&nbsp;
         <Link href="../../docs/PosterEGU25.pdf"
-        >poster</Link>
+        >poster</Link>&nbsp;and the&nbsp;
+        <Link href="https://meetingorganizer.copernicus.org/EGU25/EGU25-7020.html"
+        >abstract</Link>
       </p>
     )
   }
@@ -406,7 +408,7 @@ export const update: TimelineItem[] = [
 export const socialLinks: Social[] = [
   // {label: 'Stack Overflow', Icon: StackOverflowIcon, href: 'https://stackoverflow.com/users/8553186/tim-baker'},
   {label: 'LinkedIn', Icon: LinkedInIcon, href: 'https://www.linkedin.com/in/dinatheodosiadou/'},
-  // {label: 'Github', Icon: GithubIcon, href: 'https://github.com/dinaTheo'},
+  {label: 'Github', Icon: GithubIcon, href: 'https://github.com/dinaTheo'},
   // {label: 'Facebook', Icon: FacebookIcon, href: 'https://www.facebook.com/dina.theodosiad/'},
   // {label: 'Instagram', Icon: InstagramIcon, href: 'https://www.instagram.com/reactresume/'},
   // {label: 'Twitter', Icon: TwitterIcon, href: 'https://twitter.com/TimBakerx'},
