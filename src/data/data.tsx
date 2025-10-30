@@ -8,7 +8,7 @@
 //   SparklesIcon,
 // } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-// import GithubIcon from '../components/Icon/GithubIcon';
+import GithubIcon from '../components/Icon/GithubIcon';
 // import FacebookIcon from '../components/Icon/FacebookIcon';
 // import InstagramIcon from '../components/Icon/InstagramIcon';
 import LinkedInIcon from '../components/Icon/LinkedInIcon';
