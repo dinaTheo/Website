@@ -262,6 +262,16 @@ const Link = styled.a`
 
 export const update: TimelineItem[] = [
   {
+    date: 'December 2025',
+    location: 'Bath, UK',
+    title: 'Hydrology workshop',
+    content: (
+      <p>
+        <Link href="http://ptrinh.com/bathhydrology2025" 
+        >Mathematical analysis in flood hydrology and industry modelling practice</Link>
+      </p>
+    )
+  },{
     date: 'September 2025',
     location: 'Ljubliana, Slovenia',
     title: 'AI 4 Science summer school',
